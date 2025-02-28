@@ -15,7 +15,7 @@ const AdminContextProvider = (props) => {
     const [doctors, setDoctors] = useState([])
     const [dashData, setDashData] = useState(false)
 
-    // Getting all Doctors data from Database using API
+    
     const getAllDoctors = async () => {
 
         try {
@@ -33,7 +33,7 @@ const AdminContextProvider = (props) => {
 
     }
 
-    // Function to change doctor availablity using API
+
     const changeAvailability = async (docId) => {
         try {
 
@@ -52,7 +52,6 @@ const AdminContextProvider = (props) => {
     }
 
 
-    // Getting all appointment data from Database using API
     const getAllAppointments = async () => {
 
         try {
@@ -71,7 +70,6 @@ const AdminContextProvider = (props) => {
 
     }
 
-    // Function to cancel appointment using API
     const cancelAppointment = async (appointmentId) => {
 
         try {
@@ -92,7 +90,7 @@ const AdminContextProvider = (props) => {
 
     }
 
-    // Getting Admin Dashboard data from Database using API
+    
     const getDashData = async () => {
         try {
 

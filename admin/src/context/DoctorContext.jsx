@@ -14,7 +14,7 @@ const DoctorContextProvider = (props) => {
     const [dashData, setDashData] = useState(false)
     const [profileData, setProfileData] = useState(false)
 
-    // Getting Doctor appointment data from Database using API
+  
     const getAppointments = async () => {
         try {
 
@@ -32,7 +32,7 @@ const DoctorContextProvider = (props) => {
         }
     }
 
-    // Getting Doctor profile data from Database using API
+    
     const getProfileData = async () => {
         try {
 
@@ -45,8 +45,7 @@ const DoctorContextProvider = (props) => {
             toast.error(error.message)
         }
     }
-
-    // Function to cancel doctor appointment using API
+    
     const cancelAppointment = async (appointmentId) => {
 
         try {

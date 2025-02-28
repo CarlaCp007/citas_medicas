@@ -76,11 +76,11 @@ const DoctorProfile = () => {
                     </div>
 
                     <p className='text-gray-600 font-medium mt-4'>
-                        Appointment fee: <span className='text-gray-800'>{currency} {isEdit ? <input type='number' onChange={(e) => setProfileData(prev => ({ ...prev, fees: e.target.value }))} value={profileData.fees} /> : profileData.fees}</span>
+                        Costo cita: <span className='text-gray-800'>{currency} {isEdit ? <input type='number' onChange={(e) => setProfileData(prev => ({ ...prev, fees: e.target.value }))} value={profileData.fees} /> : profileData.fees}</span>
                     </p>
 
                     <div className='flex gap-2 py-2'>
-                        <p>Address:</p>
+                        <p>Dirección:</p>
                         <p className='text-sm'>
                             {isEdit ? <input type='text' onChange={(e) => setProfileData(prev => ({ ...prev, address: { ...prev.address, line1: e.target.value } }))} value={profileData.address.line1} /> : profileData.address.line1}
                             <br />
@@ -90,7 +90,7 @@ const DoctorProfile = () => {
 
                     <div className='flex gap-1 pt-2'>
                         <input type="checkbox" onChange={() => isEdit && setProfileData(prev => ({ ...prev, available: !prev.available }))} checked={profileData.available} />
-                        <label htmlFor="">Available</label>
+                        <label htmlFor="">Disponible</label>
                     </div>
 
                     {

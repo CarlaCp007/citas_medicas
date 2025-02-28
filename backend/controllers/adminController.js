@@ -16,7 +16,7 @@ const loginAdmin = async (req, res) => {
             const token = jwt.sign(email + password, process.env.JWT_SECRET)
             res.json({ success: true, token })
         } else {
-            res.json({ success: false, message: "Invalid credentials" })
+            res.json({ success: false, message: "Credenciales invalidas" })
         }
 
     } catch (error) {
@@ -48,7 +48,7 @@ const appointmentCancel = async (req, res) => {
         const { appointmentId } = req.body
         await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
 
-        res.json({ success: true, message: 'Appointment Cancelled' })
+        res.json({ success: true, message: 'Cita cancelada' })
 
     } catch (error) {
         console.log(error)
@@ -67,17 +67,17 @@ const addDoctor = async (req, res) => {
 
         // checking for all data to add doctor
         if (!name || !email || !password || !speciality || !degree || !experience || !about || !fees || !address) {
-            return res.json({ success: false, message: "Missing Details" })
+            return res.json({ success: false, message: "Faltan datos" })
         }
 
         // validating email format
         if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Please enter a valid email" })
+            return res.json({ success: false, message: "Por favor ingrese un mail valido" })
         }
 
         // validating strong password
         if (password.length < 8) {
-            return res.json({ success: false, message: "Please enter a strong password" })
+            return res.json({ success: false, message: "Por favor ingrese un correo valido" })
         }
 
         // hashing user password
@@ -104,7 +104,7 @@ const addDoctor = async (req, res) => {
 
         const newDoctor = new doctorModel(doctorData)
         await newDoctor.save()
-        res.json({ success: true, message: 'Doctor Added' })
+        res.json({ success: true, message: 'Doctor añadido' })
 
     } catch (error) {
         console.log(error)

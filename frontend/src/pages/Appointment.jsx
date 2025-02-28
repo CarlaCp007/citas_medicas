@@ -10,7 +10,7 @@ const Appointment = () => {
 
     const { docId } = useParams()
     const { doctors, currencySymbol, backendUrl, token, getDoctosData } = useContext(AppContext)
-    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+    const daysOfWeek = ['LUN', 'MART', 'MIER', 'JUE', 'VIE', 'SAB']
 
     const [docInfo, setDocInfo] = useState(false)
     const [docSlots, setDocSlots] = useState([])
@@ -88,7 +88,7 @@ const Appointment = () => {
     const bookAppointment = async () => {
 
         if (!token) {
-            toast.warning('Login to book appointment')
+            toast.warning('Inicia sesión para reservar cita')
             return navigate('/login')
         }
 
@@ -151,17 +151,17 @@ const Appointment = () => {
 
                     {/* ----- Doc About ----- */}
                     <div>
-                        <p className='flex items-center gap-1 text-sm font-medium text-[#262626] mt-3'>About <img className='w-3' src={assets.info_icon} alt="" /></p>
+                        <p className='flex items-center gap-1 text-sm font-medium text-[#262626] mt-3'>Nosotros <img className='w-3' src={assets.info_icon} alt="" /></p>
                         <p className='text-sm text-gray-600 max-w-[700px] mt-1'>{docInfo.about}</p>
                     </div>
 
-                    <p className='text-gray-600 font-medium mt-4'>Appointment fee: <span className='text-gray-800'>{currencySymbol}{docInfo.fees}</span> </p>
+                    <p className='text-gray-600 font-medium mt-4'>Costo cita: <span className='text-gray-800'>{currencySymbol}{docInfo.fees}</span> </p>
                 </div>
             </div>
 
             {/* Booking slots */}
             <div className='sm:ml-72 sm:pl-4 mt-8 font-medium text-[#565656]'>
-                <p >Booking slots</p>
+                <p >Disponibilidad</p>
                 <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
                     {docSlots.length && docSlots.map((item, index) => (
                         <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD]'}`}>

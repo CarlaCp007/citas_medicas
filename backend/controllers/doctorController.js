@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
 
-// API for doctor Login 
+// API para doctor
 const loginDoctor = async (req, res) => {
 
     try {
@@ -12,7 +12,7 @@ const loginDoctor = async (req, res) => {
         const user = await doctorModel.findOne({ email })
 
         if (!user) {
-            return res.json({ success: false, message: "Invalid credentials" })
+            return res.json({ success: false, message: "Credenciales Invalidas" })
         }
 
         const isMatch = await bcrypt.compare(password, user.password)
@@ -21,7 +21,7 @@ const loginDoctor = async (req, res) => {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
             res.json({ success: true, token })
         } else {
-            res.json({ success: false, message: "Invalid credentials" })
+            res.json({ success: false, message: "Credenciales Invalidas" })
         }
 
 
@@ -31,7 +31,7 @@ const loginDoctor = async (req, res) => {
     }
 }
 
-// API to get doctor appointments for doctor panel
+
 const appointmentsDoctor = async (req, res) => {
     try {
 
@@ -46,7 +46,7 @@ const appointmentsDoctor = async (req, res) => {
     }
 }
 
-// API to cancel appointment for doctor panel
+
 const appointmentCancel = async (req, res) => {
     try {
 
@@ -55,10 +55,10 @@ const appointmentCancel = async (req, res) => {
         const appointmentData = await appointmentModel.findById(appointmentId)
         if (appointmentData && appointmentData.docId === docId) {
             await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
-            return res.json({ success: true, message: 'Appointment Cancelled' })
+            return res.json({ success: true, message: 'Cita cancelada' })
         }
 
-        res.json({ success: false, message: 'Appointment Cancelled' })
+        res.json({ success: false, message: 'Cita cancelada' })
 
     } catch (error) {
         console.log(error)
@@ -76,10 +76,10 @@ const appointmentComplete = async (req, res) => {
         const appointmentData = await appointmentModel.findById(appointmentId)
         if (appointmentData && appointmentData.docId === docId) {
             await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted: true })
-            return res.json({ success: true, message: 'Appointment Completed' })
+            return res.json({ success: true, message: 'Cita completada' })
         }
 
-        res.json({ success: false, message: 'Appointment Cancelled' })
+        res.json({ success: false, message: 'Cita cancelada' })
 
     } catch (error) {
         console.log(error)
@@ -110,7 +110,7 @@ const changeAvailablity = async (req, res) => {
 
         const docData = await doctorModel.findById(docId)
         await doctorModel.findByIdAndUpdate(docId, { available: !docData.available })
-        res.json({ success: true, message: 'Availablity Changed' })
+        res.json({ success: true, message: 'Cambios disponibles' })
 
     } catch (error) {
         console.log(error)
@@ -141,7 +141,7 @@ const updateDoctorProfile = async (req, res) => {
 
         await doctorModel.findByIdAndUpdate(docId, { fees, address, available })
 
-        res.json({ success: true, message: 'Profile Updated' })
+        res.json({ success: true, message: 'Perfil actualizado' })
 
     } catch (error) {
         console.log(error)
